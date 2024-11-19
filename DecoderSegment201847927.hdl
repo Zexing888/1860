@@ -21,7 +21,7 @@ CHIP DecoderSegment201847927 {
     And(a=D2, b=notD, out=D3);
 
     And(a=A, b=B, out=E1);
-    And(a=E1, b=notc, out=E2);
+    And(a=E1, b=notC, out=E2);
     And(a=E2, b=D, out=E3);
 
     Or(a=A2, b=B1, out=F);
