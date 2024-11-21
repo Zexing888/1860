@@ -166,7 +166,7 @@ CHIP Decoder201847927 {
 
     And(a=notA, b=notB, out=G8);
     And(a=G8, b=C, out=G9);
-    And(a=G9, b=D, out=G10)
+    And(a=G9, b=D, out=G10);
 
     Or(a=G1, b=G2, out=G11);
     Or(a=G11, b=G4, out=G12);
