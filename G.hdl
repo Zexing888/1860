@@ -1,0 +1,31 @@
+CHIP G {
+    IN A, B, C, D;
+    OUT e;
+
+    PARTS:
+    Not(in=A, out=notA);
+    Not(in=B, out=notB);
+    Not(in=C, out=notC);
+    Not(in=D, out=notD);
+
+    And(a=notA, b=notB, out=E1);
+
+    And(a=A, b=notC, out=E2.1);
+    And(a=E2.1, b=D, out=E2);
+
+    And(a=A, b=notB, out=E3.1);
+    And(a=E3.1, b=notD, out=E3);
+
+    And(a=notA, b=B, out=E4.1);
+    And(a=E4.1, b=notC, out=E4.1);
+    And(a=E4.1, b=notD, out=E4);
+
+    And(a=notA, b=B, out=E5.1);
+    And(a=E5.1, b=C out=E5.2);
+    And(a=E5.2, b=D, out=E5);
+
+    Or(a=E1, b=E2, out=E6);
+    Or(a=E6, b=E3, out=E7);
+    Or(a=E7, b=E4, out=E8);
+    Or(a=E8, b=E5, out=e);
+}
