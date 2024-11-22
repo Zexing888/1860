@@ -26,6 +26,6 @@ CHIP DecoderSegment201847927 {
 
     Or(a=C2, b=C3, out=F);
     Or(a=F, b=C5, out=G);
-    Or(a=G, b=D8, out=H);
+    Or(a=G, b=C8, out=H);
     Or(a=H, b=C11, out=c);
 }
