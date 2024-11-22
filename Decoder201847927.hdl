@@ -23,12 +23,12 @@ CHIP Decoder201847927 {
     And (a=A, b=C, out=D7.1);
     And (a=D7.1, b=notD, out=D7);
 
-    Or (a=D1, b=D2, out=D8);
-    Or (a=D8, b=D3, out=D9);
-    Or (a=D9, b=D4, out=D10);
-    Or (a=D10, b=D5, out=D11);
-    Or (a=D11, b=D6, out=D12);
-    Or (a=D12, b=D7, out=d);
+    Or (a=D1, b=D2, out=ord1);
+    Or (a=ord1, b=D3, out=ord2);
+    Or (a=ord2, b=D4, out=ord3);
+    Or (a=ord3, b=D5, out=ord4);
+    Or (a=ord4, b=D6, out=ord5);
+    Or (a=ord5, b=D7, out=d);
 
     And (a=notB, b=notD, out=E1);
     And (a=notB, b=notC, out=E2);
@@ -41,19 +41,19 @@ CHIP Decoder201847927 {
     And (a=E5.1, b=notC, out=E5.2);
     And (a=E5.2, b=D, out=E5);
 
-    Or (a=E1, b=E2, out=E6);
-    Or (a=E6, b=E3, out=E7);
-    Or (a=E7, b=E4, out=E8);
-    Or (a=E8, b=E5, out=e);
+    Or (a=E1, b=E2, out=ore1);
+    Or (a=ore1, b=E3, out=ore2);
+    Or (a=ore2, b=E4, out=ore3);
+    Or (a=ore3, b=E5, out=e);
 
     And (a=notB, b=notD, out=C1);
     And (a=A, b=B, out=C2);
     And (a=A, b=C, out=C3);
     And (a=C, b=notD, out=C4);
 
-    Or (a=C1, b=C2, out=C5);
-    Or (a=C5, b=C3, out=C6);
-    Or (a=C6, b=C4, out=c);
+    Or (a=C1, b=C2, out=orc1);
+    Or (a=orc1, b=C3, out=orc2);
+    Or (a=orc2, b=C4, out=c);
 
     And (a=notA, b=notB, out=F1.1);
     And (a=F1.1, b=C, out=F1);
@@ -67,11 +67,11 @@ CHIP Decoder201847927 {
     And (a=B, b=notC, out=F6.1);
     And (a=F6.1, b=D, out=F6);
 
-    Or (a=F1, b=F2, out=F7);
-    Or (a=F7, b=F3, out=F8);
-    Or (a=F8, b=F4, out=F9);
-    Or (a=F9, b=F5, out=F10);
-    Or (a=F10, b=F6, out=f);
+    Or (a=F1, b=F2, out=orf1);
+    Or (a=orf1, b=F3, out=orf2);
+    Or (a=orf2, b=F4, out=orf3);
+    Or (a=orf3, b=F5, out=orf4);
+    Or (a=orf4, b=F6, out=f);
 
     And (a=notA, b=B, out=A1.1);
     And (a=A1.1, b=D, out=A1);
@@ -82,11 +82,11 @@ CHIP Decoder201847927 {
     And (a=A, b=notD, out=A5);
     And (a=notB, b=notD, out=A6);
 
-    Or (a=A1, b=A2, out=A7);
-    Or (a=A7, b=A3, out=A8);
-    Or (a=A8, b=A4, out=A9);
-    Or (a=A9, b=A5, out=A10);
-    Or (a=A10, b=A6, out=a);
+    Or (a=A1, b=A2, out=ora1);
+    Or (a=ora1, b=A3, out=ora2);
+    Or (a=ora2, b=A4, out=ora3);
+    Or (a=ora3, b=A5, out=ora4);
+    Or (a=ora4, b=A6, out=a);
 
     And (a=notA, b=C, out=G1.1);
     And (a=G1.1, b=notD, out=G1);
@@ -105,24 +105,24 @@ CHIP Decoder201847927 {
     And (a=A, b=C, out=G8.1);
     And (a=G8.1, b=D, out=G8);
 
-    Or (a=G1, b=G2, out=G9);
-    Or (a=G9, b=G3, out=G10);
-    Or (a=G10, b=G4, out=G11);
-    Or (a=G11, b=F5, out=G12);
-    Or (a=G12, b=G6, out=G13);
-    Or (a=G13, b=G7, out=G14);
-    Or (a=G14, b=G8, out=g);
+    Or (a=G1, b=G2, out=org1);
+    Or (a=org1, b=G3, out=org2);
+    Or (a=org2, b=G4, out=org3);
+    Or (a=org3, b=G5, out=org4);
+    Or (a=org4, b=G6, out=org5);
+    Or (a=org5, b=G7, out=org6);
+    Or (a=org6, b=G8, out=g);
 
     And (a=notA, b=B, out=B1);
     And (a=A, b=notB, out=B2);
-    And (a=notB, b=D, out= B3);
+    And (a=notB, b=D, out=B3);
     And (a=notB, b=notC, out=B4);
     And (a=A, b=B, out=B5.1);
     And (a=B5.1, b=notC, out=B5.2);
     And (a=B5.2, b=D, out=B5);
 
-    Or (a=B1, b=B2, out=B6);
-    Or (a=B6, b=B3, out=B7);
-    Or (a=B7, b=B4, out=B8);
-    Or (a=B8, b=B5, out=b);
+    Or (a=B1, b=B2, out=orb1);
+    Or (a=orb1, b=B3, out=orb2);
+    Or (a=orb2, b=B4, out=orb3);
+    Or (a=orb3, b=B5, out=b);
 }
