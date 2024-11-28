@@ -1,0 +1,146 @@
+CHIP DisplayCounter51134620 {
+    IN inc, reset;
+    OUT a, b, c, d, e, f, g;
+
+    PARTS:
+    Mux16(a=value, b=false, sel=reste, out=resetvalue);
+    Register(a=resetvalue, load=true, out[3]=A,out[2]=B, out[1]=C, out[0]=D, out[4..15]=other);
+
+    Not (in=A, out=notA);
+    Not (in=B, out=notB);
+    Not (in=C, out=notC);
+    Not (in=D, out=notD);
+
+    And (a=notA, b=notC, out=D1.1);
+    And (a=D1.1, b=notD, out=D1);
+    And (a=notD, b=B, out=D2);
+    And (a=A, b=notB, out=D3.1);
+    And (a=D3.1, b=D, out=D3);
+    And (a=A, b=notB, out=D4.1);
+    And (a=D4.1, b=notC, out=D4); 
+    And (a=notA, b=B, out=D5.1);
+    And (a=D5.1, b=notC, out=D5);
+    And (a=A, b=B, out=D6.1);
+    And (a=D6.1, b=C, out=D6);
+    And (a=A, b=C, out=D7.1);
+    And (a=D7.1, b=notD, out=D7);
+
+    Or (a=D1, b=D2, out=ord1);
+    Or (a=ord1, b=D3, out=ord2);
+    Or (a=ord2, b=D4, out=ord3);
+    Or (a=ord3, b=D5, out=ord4);
+    Or (a=ord4, b=D6, out=ord5);
+    Or (a=ord5, b=D7, out=d);
+
+    And (a=notB, b=notD, out=E1);
+    And (a=notB, b=notC, out=E2);
+    And (a=notA, b=C, out=E3.1);
+    And (a=E3.1, b=D, out=E3);
+    And (a=notA, b=B, out=E4.1);
+    And (a=E4.1, b=notC, out=E4.2);
+    And (a=E4.2, b=notD, out=E4);
+    And (a=A, b=B, out=E5.1);
+    And (a=E5.1, b=notC, out=E5.2);
+    And (a=E5.2, b=D, out=E5);
+
+    Or (a=E1, b=E2, out=ore1);
+    Or (a=ore1, b=E3, out=ore2);
+    Or (a=ore2, b=E4, out=ore3);
+    Or (a=ore3, b=E5, out=e);
+
+    And(a=notA, b=C, out=C1);
+    And(a=C1, b=notD, out=C2);
+
+    And(a=A, b=C, out=C3);
+
+    And(a=A, b=notC, out=C4);
+    And(a=C4, b=notD, out=C5);
+
+    And(a=notA, b=notB, out=C6);
+    And(a=C6, b=notC, out=C7);
+    And(a=C7, b=notD, out=C8);
+
+    And(a=A, b=B, out=C9);
+    And(a=C9, b=notC, out=C10);
+    And(a=C10, b=D, out=C11);
+
+    Or(a=C2, b=C3, out=F);
+    Or(a=F, b=C5, out=G);
+    Or(a=G, b=C8, out=H);
+    Or(a=H, b=C11, out=c);
+
+    And (a=notA, b=notB, out=F1.1);
+    And (a=F1.1, b=C, out=F1);
+    And (a=notA, b=notB, out=F2.1);
+    And (a=F2.1, b=notD, out=F2);
+    And (a=B, b=C, out=F3.1);
+    And (a=F3.1, b=notD, out=F3);
+    And (a=A, b=notB, out=F4.1);
+    And (a=F4.1, b=D, out=F4);
+    And (a=A, b=notC, out=F5);
+    And (a=B, b=notC, out=F6.1);
+    And (a=F6.1, b=D, out=F6);
+
+    Or (a=F1, b=F2, out=orf1);
+    Or (a=orf1, b=F3, out=orf2);
+    Or (a=orf2, b=F4, out=orf3);
+    Or (a=orf3, b=F5, out=orf4);
+    Or (a=orf4, b=F6, out=f);
+
+    And (a=notA, b=B, out=A1.1);
+    And (a=A1.1, b=D, out=A1);
+    And (a=A, b=notB, out=A2.1);
+    And (a=A2.1, b=notC, out=A2);
+    And (a=B, b=C, out=A3);
+    And (a=notA, b=C, out=A4);
+    And (a=A, b=notD, out=A5);
+    And (a=notB, b=notD, out=A6);
+
+    Or (a=A1, b=A2, out=ora1);
+    Or (a=ora1, b=A3, out=ora2);
+    Or (a=ora2, b=A4, out=ora3);
+    Or (a=ora3, b=A5, out=ora4);
+    Or (a=ora4, b=A6, out=a);
+
+    And (a=notA, b=C, out=G1.1);
+    And (a=G1.1, b=notD, out=G1);
+    And (a=notA, b=C, out=G2.1);
+    And (a=G2.1, b=notB, out=G2);
+    And (a=A, b=notB, out=G3.1);
+    And (a=G3.1, b=notD, out=G3);
+    And (a=A, b=notB, out=G4.1);
+    And (a=G4.1, b=notC, out=G4);
+    And (a=B, b=notC, out=G5.1);
+    And (a=G5.1, b=D, out=G5);
+    And (a=B, b=notC, out=G6.1);
+    And (a=G6.1, b=notA, out=G6);
+    And (a=A, b=C, out=G7.1);
+    And (a=G7.1, b=B, out=G7);
+    And (a=A, b=C, out=G8.1);
+    And (a=G8.1, b=D, out=G8);
+
+    Or (a=G1, b=G2, out=org1);
+    Or (a=org1, b=G3, out=org2);
+    Or (a=org2, b=G4, out=org3);
+    Or (a=org3, b=G5, out=org4);
+    Or (a=org4, b=G6, out=org5);
+    Or (a=org5, b=G7, out=org6);
+    Or (a=org6, b=G8, out=g);
+
+    And (a=notA, b=B, out=B1);
+    And (a=A, b=notB, out=B2);
+    And (a=notB, b=D, out=B3);
+    And (a=notB, b=notC, out=B4);
+    And (a=A, b=B, out=B5.1);
+    And (a=B5.1, b=notC, out=B5.2);
+    And (a=B5.2, b=D, out=B5);
+
+    Or (a=B1, b=B2, out=orb1);
+    Or (a=orb1, b=B3, out=orb2);
+    Or (a=orb2, b=B4, out=orb3);
+    Or (a=orb3, b=B5, out=b);
+
+    And16(a[3]=A, a[2]=B, a[1]=C, a[0]=D, a[4..15]=other, b=true, out=currentvalue)
+    Inc16(in=currentvalue, out=newvalue);
+    Mux16(a=currentvalue, b=newvalue, sel=inc, out=value);
+}
