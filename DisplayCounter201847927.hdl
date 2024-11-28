@@ -140,7 +140,7 @@ CHIP DisplayCounter201847927 {
     Or (a=orb2, b=B4, out=orb3);
     Or (a=orb3, b=B5, out=b);
 
-    And16(a[3]=A, a[2]=B, a[1]=C, a[0]=D, a[4..15]=other, b=true, out=currentvalue)
+    And16(a[3]=A, a[2]=B, a[1]=C, a[0]=D, a[4..15]=other, b=true, out=currentvalue);
     Inc16(in=currentvalue, out=newvalue);
     Mux16(a=currentvalue, b=newvalue, sel=inc, out=value);
 }
