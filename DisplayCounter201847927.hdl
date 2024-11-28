@@ -3,7 +3,7 @@ CHIP DisplayCounter201847927 {
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    Mux16(a=value, b=false, sel=reste, out=resetvalue);
+    Mux16(a=value, b=false, sel=reset, out=resetvalue);
     Register(in=resetvalue, load=true, out[3]=A,out[2]=B, out[1]=C, out[0]=D, out[4..15]=other);
 
     Not (in=A, out=notA);
