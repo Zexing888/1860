@@ -9,7 +9,7 @@ CHIP P2S {
     Or(a=bit_index[1], b=bit_index[0], out=high_bit_set);
     And(a=bit_index[1], b=bit_index[0], out=complete_internal);
     Not(in=complete_internal, out=not_complete);
-    Add16(a=bit_index, b[4..0], out=bit);
-    Mux4Way16(a=data[0], b=data[1], c=data[2], d=data[3], sel=bit_index, out=sout);
+    Add4(a=bit_index, b[0..3], out=bit);
+    Mux4Way4(a=data[0], b=data[1], c=data[2], d=data[3], sel=bit_index, out=sout);
     Or(a=complete_internal, b=reset_complete, out=complete)
 }
