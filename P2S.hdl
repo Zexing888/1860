@@ -1,0 +1,15 @@
+CHIP P2S {
+    IN indata[4], enable, load;
+    OUT sout, complete;
+
+    PARTS:
+    Register(in=indata, load=true, out=data);
+    Register(in=bit, load=bit_update, out=bit_index);
+    And(a=enable, b=not_complete, oyt=bit_update);
+    Or(a=bit_index[1], b=bit_index[0], out=high_bit_set);
+    And(a=bit_index[1], b=bit_index[0], out=complete_internal);
+    Not(in=complete_internal, out=not_complete);
+    Add16(a=bit_index, b[4..0], out=bit);
+    Mux4Way16(a=data[0], b=data[1], c=data[2], d=data[3], sel=bit_index, out=sout);
+    Or(a=complete_internal, b=reset_complete, out=complete)
+}
