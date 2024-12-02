@@ -3,7 +3,7 @@ CHIP P2S {
     OUT sout, complete;
 
     PARTS:
-    Register(in=indata, load=true, out=data);
+    Register(in=indata[4], load=true, out=data);
     Register(in=bit, load=bit_update, out=bit_index);
     And(a=enable, b=not_complete, oyt=bit_update);
     Or(a=bit_index[1], b=bit_index[0], out=high_bit_set);
