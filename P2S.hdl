@@ -17,11 +17,11 @@ CHIP P2S {
     And(a=counterIs3, b=active, out=a1);
     Bit(in=a1, load=true, out=a2);
     Not(in=a2, out=a3);
-    And(a=transmissionComplete, b=a3, out=complete);
+    And(a=a2, b=a3, out=complete);
 
     Not(in=active, out=Active1);
     And(a=enable, b=Active1, out=b1);
-    Not(in=transmissionComplete, out=b2);
+    Not(in=a2, out=b2);
     And(a=active, b=b2, out=b3);
     Or(a=b1, b=b3, out=nextActive);
 
