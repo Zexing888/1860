@@ -29,9 +29,9 @@ CHIP P2S {
     And(a=counter0, b=active, out=carryOut0);
     Xor(a=counter1, b=carryOut0, out=c2);
     Mux(a=counter0, b=c1, sel=active, out=c3);
-    Mux(a=c3, b=false, sel=c4, out=nextCounter0);
+    Mux(a=c3, b=false, sel=b1, out=nextCounter0);
     Mux(a=counter1, b=c2, sel=active, out=counterNext1);
-    Mux(a=counterNext1, b=false, sel=c4, out=nextCounter1);
+    Mux(a=counterNext1, b=false, sel=b1, out=nextCounter1);
     Mux(a=Data0, b=Data1, sel=counter0, out=c5);
     Mux(a=Data2, b=Data3, sel=counter0, out=c6);
     Mux(a=c5, b=c6, sel=counter1, out=c7);
