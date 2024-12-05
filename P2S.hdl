@@ -3,13 +3,37 @@ CHIP P2S {
     OUT sout, complete;
 
     PARTS:
-    Register(in=indata[0..3], load=true, out=data[0..3]);
-    Register(in=bit, load=bit_update, out=bit_index[0..1]);
-    And(a=enable, b=not_complete, oyt=bit_update);
-    Or(a=bit_index[1], b=bit_index[0], out=high_bit_set);
-    And(a=bit_index[1], b=bit_index[0], out=complete_internal);
-    Not(in=complete_internal, out=not_complete);
-    Add4(a=bit_index, b[0..3], out=bit);
-    Mux4Way4(a=data[0], b=data[1], c=data[2], d=data[3], sel=bit_index, out=sout);
-    Or(a=complete_internal, b=reset_complete, out=complete)
+
+    Bit(in=indata[0], load=load, out=Data0);
+    Bit(in=indata[1], load=load, out=Data1);
+    Bit(in=indata[2], load=load, out=Data2);
+    Bit(in=indata[3], load=load, out=Data3);
+
+    Bit(in=nextActive, load=true, out=active);
+    Bit(in=nextCounter0, load=true, out=counter0);
+    Bit(in=nextCounter1, load=true, out=counter1);
+    
+    And(a=counter0, b=counter1, out=counterIs3);
+    And(a=counterIs3, b=active, out=transmissionComplete);
+    Bit(in=transmissionComplete, load=true, out=prevTransmissionComplete);
+    Not(in=prevTransmissionComplete, out=notPrevTransmissionComplete);
+    And(a=transmissionComplete, b=notPrevTransmissionComplete, out=complete);
+
+    Not(in=active, out=notActive);
+    And(a=enable, b=notActive, out=startTransmission);
+    Not(in=transmissionComplete, out=notTransmissionComplete);
+    And(a=active, b=notTransmissionComplete, out=activeAndNotComplete);
+    Or(a=startTransmission, b=activeAndNotComplete, out=nextActive);
+
+    Xor(a=counter0, b=active, out=incrementedCounter0);
+    And(a=counter0, b=active, out=carryOut0);
+    Xor(a=counter1, b=carryOut0, out=incrementedCounter1);
+    Mux(a=counter0, b=incrementedCounter0, sel=active, out=counterNext0);
+    Mux(a=counterNext0, b=false, sel=startTransmission, out=nextCounter0);
+    Mux(a=counter1, b=incrementedCounter1, sel=active, out=counterNext1);
+    Mux(a=counterNext1, b=false, sel=startTransmission, out=nextCounter1);
+    Mux(a=Data0, b=Data1, sel=counter0, out=muxLevel1Out0);
+    Mux(a=Data2, b=Data3, sel=counter0, out=muxLevel1Out1);
+    Mux(a=muxLevel1Out0, b=muxLevel1Out1, sel=counter1, out=selectedBit);
+    And(a=selectedBit, b=active, out=sout);
 }
